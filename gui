@@ -1,0 +1,84 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class AirlineReservationGUI {
+    private JFrame frame;
+    private JTextField flightNumberField;
+    private JTextField passengerNameField;
+    private JTextArea outputArea;
+
+    public AirlineReservationGUI() {
+        frame = new JFrame("Airline Reservation System");
+        frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        // Create panels
+        JPanel inputPanel = new JPanel(new GridLayout(4, 2));
+        JPanel buttonPanel = new JPanel();
+
+        // Components
+        JLabel flightNumberLabel = new JLabel("Flight Number:");
+        flightNumberField = new JTextField();
+        JLabel passengerNameLabel = new JLabel("Passenger Name:");
+        passengerNameField = new JTextField();
+        JButton searchButton = new JButton("Search Flight");
+        JButton bookButton = new JButton("Book Ticket");
+        outputArea = new JTextArea(10, 40);
+        outputArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(outputArea);
+
+        // Add components to input panel
+        inputPanel.add(flightNumberLabel);
+        inputPanel.add(flightNumberField);
+        inputPanel.add(passengerNameLabel);
+        inputPanel.add(passengerNameField);
+        inputPanel.add(new JLabel());  // Empty cell
+        inputPanel.add(new JLabel());  // Empty cell
+        inputPanel.add(searchButton);
+        inputPanel.add(bookButton);
+
+        // Add action listeners
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchFlight();
+            }
+        });
+
+        bookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bookTicket();
+            }
+        });
+
+        // Add components to frame
+        frame.add(inputPanel, BorderLayout.NORTH);
+        frame.add(scrollPane, BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
+
+    private void searchFlight() {
+        // Placeholder for searching flight logic
+        String flightNumber = flightNumberField.getText();
+        // Example: Displaying a simple message
+        outputArea.setText("Searching for flight: " + flightNumber + "...");
+        // Add your flight searching logic here
+    }
+
+    private void bookTicket() {
+        // Placeholder for booking ticket logic
+        String flightNumber = flightNumberField.getText();
+        String passengerName = passengerNameField.getText();
+        // Example: Displaying a simple message
+        outputArea.setText("Booking ticket for " + passengerName + " on flight " + flightNumber + "...");
+        // Add your ticket booking logic here
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new AirlineReservationGUI());
+    }
+}
